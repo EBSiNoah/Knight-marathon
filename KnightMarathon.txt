@@ -1,0 +1,19 @@
+This is answer of https://www.acmicpc.net/problem/14998 question
+
+I make two kinds of knight marathon.
+First one judge the cross line between start location and capital. Those points can express as right triangle.
+It compares each diagonal line and knight's move every repetition. But this consume lots of memory.
+So I make Second one.
+It focus in pattern. In triangle, the long side is named as Yl, and the other is named as Xl. 
+From the start location, Knight moves y side as 2, and x side as 1 until capital and current location become a right isosceles triangle.
+After that, Knight can move y side 3 and x side 3 in two behavior.
+We can find out the answer with some caculate.
+But I need to look up exception more.
+-----------------------10.15---------------------------
+If we find the intersection of a straight line with slope 2 at the end point and a straight line with slope 1/2 at the start point, I thought that the number of movements would be the same as a result.
+But not actually.
+May be hybrid of first and second would be the answer.
+-------------------------10.19--------------------------
+I visualize move of the knight, and try to make some kind of structure.
+I make 8 kinds of moves as array. Those moves make map 1 to 0, then sum of each column would change. It means knight moves within the allowed area.
+I need to normalize more.
