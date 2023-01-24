@@ -80,7 +80,7 @@ def knightMoveSampleC():
                 b=(2*m-n-1)//3
                 isB=True
             if((isA and isB) and a-b == n-m):
-                restore.append(a)                   
+                restore.append(a)
                 restore.append(b)
                 restore.append(m)
                 restore.append(n)
@@ -90,27 +90,68 @@ def knightMoveSampleC():
         m+=1
     return Dset
 
-def setsample():
-    Triset=[]
-    restore=[]
-    k=1
-    l=1
-    while(k<30):
-        l=1
-        while(l<30):
-            if((2*k-l)%3==0):
-                restore.append(k)
-                restore.append(l)
-                Triset.append(copy.deepcopy(restore))
-                restore.clear()
-            l+=1
-        k+=1
+def knightMarathon(width,length):
+    k=0
+    m=0
+    n=0
+    count=0
+    sp=0
+    ep=0
+    mid=0
+    size=0
+    isexist=False
+    matchset=[]
+    if(width>length):
+        m=width
+        n=length
+    else:
+        m=length
+        n=width
     
-    return Triset
+    while(n//2 + 2 - n%2 + 3*count != 2*n - 1):
+        matchset.append(n//2 + 1 + 3*count)
+        count += 1
+    
+    size=len(matchset)
+    ep=size-1
+    while(sp<=ep):
+        mid=(sp+ep) // 2
+        if(m > matchset[mid]):
+            sp = mid+1
+        elif(m < matchset[mid]):
+            ep = mid-1
+        else:
+            isexist=True
+            break;
+    if(sp>ep):
+        mid=sp
+    
+    if(isexist):
+        k = (m+n-2) // 3
+    else:
+        k = exception(n,m,matchset,mid)
+    return k
+
+def exception(n,m,matchset,mid):
+    num=len(matchset)
+    maxnum=0
+    k=0
+    maxnum = (n + matchset[num-1]-2) // 3
+    if(m > 2*n - 1):
+        if(n==1 and m == 2):
+            k = 3
+        else:
+            k = maxnum + 2*((m-matchset[num-1]) // 4) + ((m-matchset[num-1]) % 4)
+    else:
+        if(n == 3 and m == 3):
+            k = 4
+        else:
+            k = (n + matchset[mid] - 2)//3 + (m - matchset[mid]) % 3
+    return k
 
 def kmsTest():
     # print(knightMoveSampleC())
-    print(setsample())
+    print(knightMoveSampleC())
 
 def main():
     kmsTest()
