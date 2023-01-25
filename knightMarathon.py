@@ -246,8 +246,8 @@ def inputTri(instr, instr2, instr3):
         count += 1
     # print(restoreF2)
     # print(restoreB2)
-    width=restoreF2-restoreF+1
-    length=restoreB2-restoreB+1
+    width=restoreF2-restoreF
+    length=restoreB2-restoreB
     
     size=len(instr3)
     count=0
@@ -261,8 +261,8 @@ def inputTri(instr, instr2, instr3):
         restoreB3 = ord(instr3[count])-48 + restoreB3*10
         count += 1
 
-    listri.append(abs(width))
-    listri.append(abs(length))
+    listri.append(abs(width)+1)
+    listri.append(abs(length)+1)
     if((restoreF == 1 and restoreB == 1) and (restoreF2 == 0 and restoreB2 == 0)):
         listri.append(1)
     elif((restoreF == 1 and restoreB == restoreB3-1) and (restoreF2 == 0 and restoreB2 == restoreB3)):
@@ -270,6 +270,14 @@ def inputTri(instr, instr2, instr3):
     elif((restoreF == restoreF3-1 and restoreB == 1) and (restoreF2 == restoreF3 and restoreB2 == 0)):
         listri.append(1)
     elif((restoreF == restoreF3-1 and restoreB == restoreB3-1) and (restoreF2 == restoreF3 and restoreB2 == restoreB3)):
+        listri.append(1)
+    elif((restoreF == 0 and restoreB == 0) and (restoreF2 == 1 and restoreB2 == 1)):
+        listri.append(1)
+    elif((restoreF == 0 and restoreB == restoreB3) and (restoreF2 == 1 and restoreB2 == restoreB3-1)):
+        listri.append(1)
+    elif((restoreF == restoreF3 and restoreB == 0) and (restoreF2 == restoreF3-1 and restoreB2 == 1)):
+        listri.append(1)
+    elif((restoreF == restoreF3 and restoreB == restoreB3) and (restoreF2 == restoreF3-1 and restoreB2 == restoreB3-1)):
         listri.append(1)
     else:
         listri.append(0)
