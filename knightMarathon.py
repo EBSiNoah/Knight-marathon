@@ -108,10 +108,11 @@ def knightMarathon(width,length):
         m=length
         n=width
     
-    while(n//2 + 2 - n%2 + 3*count != 2*n - 1):
-        matchset.append(n//2 + 1 + 3*count)
+    while(n//2 + 2 - n%2 + 3*count <= 2*n - 1):
+        matchset.append(n//2 + 2 - n%2 + 3*count)
+        print(n//2 + 2 - n%2 + 3*count)
         count += 1
-    
+    # print(matchset)
     size=len(matchset)
     ep=size-1
     while(sp<=ep):
@@ -125,7 +126,7 @@ def knightMarathon(width,length):
             break;
     if(sp>ep):
         mid=sp
-    
+    # print(mid)
     if(isexist):
         k = (m+n-2) // 3
     else:
@@ -146,15 +147,152 @@ def exception(n,m,matchset,mid):
         if(n == 3 and m == 3):
             k = 4
         else:
-            k = (n + matchset[mid] - 2)//3 + (m - matchset[mid]) % 3
+            k = (n + matchset[mid-1] - 2)//3 + (m - matchset[mid-1]) % 3
     return k
 
+def knightMarathonA(width,length):
+    k=0
+    m=0
+    n=0
+    restore=0
+
+    if(width>length):
+        m=width
+        n=length
+    else:
+        m=length
+        n=width
+    
+    if(m > 2*n - 1):
+        if(n == 1 and m == 2):
+            k=3
+        else:
+            maxnum = n-1
+            k = maxnum + 2*((m - 2*n-1) // 4) + ((m - 2*n-1) % 4)
+    else:
+        if(n == 3 and m == 3):
+            k=4
+        else:
+            restore = (m - (n//2 + 2 - n%2)) // 3
+            k = (n + (n//2 + 2 - n%2 + 3*restore) - 2) // 3 + (m - (n//2 + 2 - n%2)) % 3
+    return k
+
+def knightMarathonA01(width,length,istwo):
+    k=0
+    m=0
+    n=0
+    restore=0
+
+    if(width>length):
+        m=width
+        n=length
+    else:
+        m=length
+        n=width
+    
+    if(m > 2*n - 1):
+        if(n == 1 and m == 2):
+            k=3
+        else:
+            maxnum = n-1
+            k = maxnum + 2*((m - 2*n-1) // 4) + ((m - 2*n-1) % 4)
+    else:
+        if(n == 3 and m == 3):
+            k=4
+        elif(n == 2 and m == 2):
+            if(istwo == 1):
+                k=4
+            else:
+                k=2
+        else:
+            restore = (m - (n//2 + 2 - n%2)) // 3
+            k = (n + (n//2 + 2 - n%2 + 3*restore) - 2) // 3 + (m - (n//2 + 2 - n%2)) % 3
+    return k
+
+def inputTri(instr, instr2, instr3):
+    size=len(instr)
+    count=0
+    restoreF=0
+    restoreB=0
+    restoreF2=0
+    restoreB2=0
+    restoreF3=0
+    restoreB3=0
+    width=0
+    length=0
+    listri=[]
+    while(count<size):
+        if(instr[count] == " "):
+            break
+        restoreF = ord(instr[count])-48 + restoreF*10
+        count += 1
+    count += 1
+    while(count<size):
+        restoreB = ord(instr[count])-48 + restoreB*10
+        count += 1
+    # print(restoreF)
+    # print(restoreB)
+    
+    size=len(instr2)
+    count=0
+    while(count<size):
+        if(instr2[count] == " "):
+            break
+        restoreF2 = ord(instr2[count])-48 + restoreF2*10
+        count += 1
+    count += 1
+    while(count<size):
+        restoreB2 = ord(instr2[count])-48 + restoreB2*10
+        count += 1
+    # print(restoreF2)
+    # print(restoreB2)
+    width=restoreF2-restoreF+1
+    length=restoreB2-restoreB+1
+    
+    size=len(instr3)
+    count=0
+    while(count<size):
+        if(instr3[count] == " "):
+            break
+        restoreF3 = ord(instr3[count])-48 + restoreF3*10
+        count += 1
+    count += 1
+    while(count<size):
+        restoreB3 = ord(instr3[count])-48 + restoreB3*10
+        count += 1
+
+    listri.append(abs(width))
+    listri.append(abs(length))
+    if((restoreF == 1 and restoreB == 1) and (restoreF2 == 0 and restoreB2 == 0)):
+        listri.append(1)
+    elif((restoreF == 1 and restoreB == restoreB3-1) and (restoreF2 == 0 and restoreB2 == restoreB3)):
+        listri.append(1)
+    elif((restoreF == restoreF3-1 and restoreB == 1) and (restoreF2 == restoreF3 and restoreB2 == 0)):
+        listri.append(1)
+    elif((restoreF == restoreF3-1 and restoreB == restoreB3-1) and (restoreF2 == restoreF3 and restoreB2 == restoreB3)):
+        listri.append(1)
+    else:
+        listri.append(0)
+    # print(listri)
+    return listri
+
 def kmsTest():
+    lenset=[]
+    first=""
+    second=""
+    third=""
+    
+    first=input()
+    second=input()
+    third=input()
+    lenset=inputTri(second, third, first)
     # print(knightMoveSampleC())
-    print(knightMoveSampleC())
+    # print(knightMarathon(1,999999997))
+    print(knightMarathonA01(lenset[0],lenset[1],lenset[2]))
 
 def main():
     kmsTest()
+    # inputTri("253 6789","253 6789")
     
 if(__name__=="__main__"):
     main()
