@@ -195,7 +195,7 @@ def knightMarathonA01(width,length,istwo):
             k=3
         else:
             maxnum = n-1
-            k = maxnum + 2*((m - 2*n-1) // 4) + ((m - 2*n-1) % 4)
+            k = maxnum + 2*((m - (2*n-1)) // 4) + ((m - (2*n-1)) % 4)
     else:
         if(n == 3 and m == 3):
             k=4
@@ -284,6 +284,18 @@ def inputTri(instr, instr2, instr3):
     # print(listri)
     return listri
 
+def confirm():
+    countA=1
+    countB=1
+    k=0
+    while(countA < 20):
+        countB = 1
+        while(countB < 20):
+            k = knightMarathonA01(countA,countB,0)
+            print(countA,countB,k)
+            countB += 1
+        countA += 1
+
 def kmsTest():
     lenset=[]
     first=""
@@ -299,8 +311,9 @@ def kmsTest():
     print(knightMarathonA01(lenset[0],lenset[1],lenset[2]))
 
 def main():
-    kmsTest()
+    # kmsTest()
     # inputTri("253 6789","253 6789")
+    confirm()
     
 if(__name__=="__main__"):
     main()
