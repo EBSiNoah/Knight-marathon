@@ -209,6 +209,27 @@ def knightMarathonA01(width,length,istwo):
             k = (n + (n//2 + 2 - n%2 + 3*restore) - 2) // 3 + (m - (n//2 + 2 - n%2)) % 3
     return k
 
+def knightMarathonA02(width,length,istwo):
+    k=0
+    m=0
+    n=0
+    restore=0
+
+    if(width>length):
+        m=width
+        n=length
+    else:
+        m=length
+        n=width
+    
+    if(m > 2*n - 1):
+        maxnum = n-1
+        k = maxnum + 2*((m - (2*n-1)) // 4) + ((m - (2*n-1)) % 4)
+    else:
+        restore = (m - (n//2 + 2 - n%2)) // 3
+        k = (n + (n//2 + 2 - n%2 + 3*restore) - 2) // 3 + (m - (n//2 + 2 - n%2)) % 3
+    return k
+
 def inputTri(instr, instr2, instr3):
     size=len(instr)
     count=0
@@ -265,19 +286,7 @@ def inputTri(instr, instr2, instr3):
     listri.append(abs(length)+1)
     if((restoreF == 1 and restoreB == 1) and (restoreF2 == 0 and restoreB2 == 0)):
         listri.append(1)
-    elif((restoreF == 1 and restoreB == restoreB3-1) and (restoreF2 == 0 and restoreB2 == restoreB3)):
-        listri.append(1)
-    elif((restoreF == restoreF3-1 and restoreB == 1) and (restoreF2 == restoreF3 and restoreB2 == 0)):
-        listri.append(1)
-    elif((restoreF == restoreF3-1 and restoreB == restoreB3-1) and (restoreF2 == restoreF3 and restoreB2 == restoreB3)):
-        listri.append(1)
     elif((restoreF == 0 and restoreB == 0) and (restoreF2 == 1 and restoreB2 == 1)):
-        listri.append(1)
-    elif((restoreF == 0 and restoreB == restoreB3) and (restoreF2 == 1 and restoreB2 == restoreB3-1)):
-        listri.append(1)
-    elif((restoreF == restoreF3 and restoreB == 0) and (restoreF2 == restoreF3-1 and restoreB2 == 1)):
-        listri.append(1)
-    elif((restoreF == restoreF3 and restoreB == restoreB3) and (restoreF2 == restoreF3-1 and restoreB2 == restoreB3-1)):
         listri.append(1)
     else:
         listri.append(0)
@@ -288,6 +297,8 @@ def confirm():
     countA=1
     countB=1
     k=0
+    # k = knightMarathonA01(countA,countB,0)
+    # print(k)
     while(countA < 20):
         countB = 1
         while(countB < 20):
@@ -295,6 +306,22 @@ def confirm():
             print(countA,countB,k)
             countB += 1
         countA += 1
+
+def confirmPicture():
+    countA=1
+    countB=1
+    knightmove=[]
+    k=0
+    while(countA < 20):
+        countB = 1
+        while(countB < 20):
+            k = knightMarathonA01(countA,countB,0)
+            knightmove.append(k)
+            countB += 1
+        print(countA,knightmove)
+        knightmove.clear()
+        countA += 1
+
 
 def kmsTest():
     lenset=[]
@@ -313,7 +340,8 @@ def kmsTest():
 def main():
     # kmsTest()
     # inputTri("253 6789","253 6789")
-    confirm()
+    # confirm()
+    confirmPicture()
     
 if(__name__=="__main__"):
     main()
