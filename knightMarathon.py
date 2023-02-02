@@ -338,10 +338,10 @@ def kmsTest():
     print(knightMarathonA01(lenset[0],lenset[1],lenset[2]))
 
 def main():
-    # kmsTest()
+    kmsTest()
     # inputTri("253 6789","253 6789")
     # confirm()
-    confirmPicture()
+    # confirmPicture()
     
 if(__name__=="__main__"):
     main()
