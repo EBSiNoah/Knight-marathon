@@ -148,6 +148,30 @@ vector<int> inputTri(vector<char> instr, vector<char> instr2, vector<char> instr
 	{
 		listri.push_back(1);
 	}
+	else if((restoreF == 0 && restoreB == restoreB3-1) && (restoreF2 == 1 && restoreB2 == restoreB3-2))
+	{
+		listri.push_back(1);
+	}
+	else if((restoreF == 1 && restoreB == restoreB3-2) && (restoreF2 == 0 && restoreB2 == restoreB3-1))
+	{
+		listri.push_back(1);
+	}
+	else if((restoreF == restoreF3-1 && restoreB == 0) && (restoreF2 == restoreF3-2 && restoreB2 == 1))
+	{
+		listri.push_back(1);
+	}
+	else if((restoreF == restoreF3-2 && restoreB == 1) && (restoreF2 == restoreF3-1 && restoreB2 == 0))
+	{
+		listri.push_back(1);
+	}
+	else if((restoreF == restoreF3-1 && restoreB == restoreB3-1) && (restoreF2 == restoreF3-2 && restoreB2 == restoreB3-2))
+	{
+		listri.push_back(1);
+	}
+	else if((restoreF == restoreF3-2 && restoreB == restoreB3-2) && (restoreF2 == restoreF3-1 && restoreB2 == restoreB3-1))
+	{
+		listri.push_back(1);
+	}
 	else
 	{
 		listri.push_back(0);

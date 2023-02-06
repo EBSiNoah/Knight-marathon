@@ -288,6 +288,18 @@ def inputTri(instr, instr2, instr3):
         listri.append(1)
     elif((restoreF == 0 and restoreB == 0) and (restoreF2 == 1 and restoreB2 == 1)):
         listri.append(1)
+    elif((restoreF == 0 and restoreB == restoreB3-1) and (restoreF2 == 1 and restoreB2 == restoreB3-2)):
+        listri.append(1)
+    elif((restoreF == 1 and restoreB == restoreB3-2) and (restoreF2 == 0 and restoreB2 == restoreB3-1)):
+        listri.append(1)
+    elif((restoreF == restoreF3-1 and restoreB == restoreB3-1) and (restoreF2 == restoreF3-2 and restoreB2 == restoreB3-2)):
+        listri.append(1)
+    elif((restoreF == restoreF3-2 and restoreB == restoreB3-2) and (restoreF2 == restoreF3-1 and restoreB2 == restoreB3-1)):
+        listri.append(1)
+    elif((restoreF == restoreF3-1 and restoreB == 0) and (restoreF2 == restoreF3-2 and restoreB2 == 1)):
+        listri.append(1)
+    elif((restoreF == restoreF3-2 and restoreB == 1) and (restoreF2 == restoreF3-1 and restoreB2 == 0)):
+        listri.append(1)
     else:
         listri.append(0)
     # print(listri)
@@ -338,10 +350,10 @@ def kmsTest():
     print(knightMarathonA01(lenset[0],lenset[1],lenset[2]))
 
 def main():
-    kmsTest()
+    # kmsTest()
     # inputTri("253 6789","253 6789")
     # confirm()
-    # confirmPicture()
+    confirmPicture()
     
 if(__name__=="__main__"):
     main()
